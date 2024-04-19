@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import connectDB from './database';
 import { errorHandler } from './middleware/errors';
 import logger from './utils/logger';
+import { default as routes } from '@/routes/index.routes';
 
 require('dotenv').config();
 
@@ -45,6 +46,8 @@ app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_, res) => res.status(200).json({ message: 'Server Up and Running!' }));
+
+app.use('/api', routes);
 
 app.use(errorHandler);
 
