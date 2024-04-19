@@ -1,8 +1,8 @@
 import { Joi } from 'celebrate';
 
 export const addFeedbackSchema = Joi.object({
-    noOfStars: Joi.number().required(),
-    comment: Joi.string().required()
+  noOfStars: Joi.number().required(),
+  comment: Joi.string().required()
 });
 
 export const feedbackIdSchema = {
@@ -10,6 +10,6 @@ export const feedbackIdSchema = {
 };
 
 export const feedbackUpdateSchema = {
-    noOfStars: Joi.number().required(),
-    comment: Joi.string().required()
+  noOfStars: Joi.number().required(),
+  comment: Joi.string().required()
 };
