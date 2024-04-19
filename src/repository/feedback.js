@@ -11,24 +11,20 @@ export const createFeedback = async (feedbackData) => {
   }
 };
 
-export const getAllFeedbacks = async ({ sort = { createdAt: -1 }, filter = {}, page = 1, limit = 10 }) => {
-  try {
-    const options = {
-      page,
-      limit,
-      sort
-    };
+export const getAllFeedbacks = async ({ sort = {}, filter = {}, page = 1, limit = 10 }) => {
+  const options = {
+    page,
+    limit
+  };
 
-    const aggregateQuery = () => Feedback.aggregate([{ $match: filter }]);
+  if (Object.keys(sort).length > 0) options.sort = sort;
 
-    return (page ? await Feedback.aggregatePaginate(aggregateQuery(), options) : aggregateQuery()).catch((err) => {
-      logger.error(`An error occurred when retrieving feedbacks - err: ${err.message}`);
-      throw err;
-    });
-  } catch (err) {
+  const aggregateQuery = () => Feedback.aggregate([{ $match: filter }]);
+
+  return (page ? Feedback.aggregatePaginate(aggregateQuery(), options) : aggregateQuery()).catch((err) => {
     logger.error(`An error occurred when retrieving feedbacks - err: ${err.message}`);
     throw err;
-  }
+  });
 };
 
 export const getFeedbackById = async (feedbackId) => {

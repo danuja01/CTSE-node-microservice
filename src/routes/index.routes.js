@@ -1,8 +1,8 @@
 import express from 'express';
-import feedbackRouter from './feedback.routes';
+import feedbackRouter from './v1/feedback.routes';
 
 const router = express.Router();
 
-router.use('/feedback', feedbackRouter);
+router.use('/v1/feedback', feedbackRouter);
 
 export default router;

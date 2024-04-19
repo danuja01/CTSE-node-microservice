@@ -26,13 +26,9 @@ export const UpdateFeedbackService = async (filters, data) => {
   return updatedFeedback;
 };
 
-export const deleteFeedbackService = async (feedbackId, userId) => {
+export const deleteFeedbackService = async (feedbackId) => {
   const feedback = await getFeedbackById({ _id: feedbackId });
   if (!feedback) throw new createError(404, 'Invalid feedback ID');
-
-  if (feedback.userId.toString() !== userId.toString()) {
-    throw new createError(403, 'You are not authorized to delete this feedback');
-  }
 
   return deleteFeedbackById({ _id: feedbackId });
 };

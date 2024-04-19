@@ -12,7 +12,7 @@ const FeedbackSchema = new Schema({
   }
 });
 
-Feedback.plugin(aggregatePaginate);
+FeedbackSchema.plugin(aggregatePaginate);
 FeedbackSchema.index({ createdAt: 1 });
 
 const Feedback = model('Feedback', FeedbackSchema);
