@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import createError from 'http-errors';
 import sinon from 'sinon';
 import * as FeedbackRepository from '@/repository/feedback';
 import * as FeedbackService from '@/services/feedback';
