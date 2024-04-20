@@ -13,7 +13,7 @@
     "lint": "eslint src --ext js,md --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
     "prepare": "husky",
     "start": "node dist/app.js",
-    "test": "mocha --require @babel/register test/index.test.js --timeout 10000 --exit",
+    "test": "mocha --experimental-modules --require @babel/register test/index.test.js --timeout 10000 --exit",
     "test:unit": "mocha --require @babel/register test/root.test.js && test/unit/**.test.js --timeout 10000 --exit"
   },
   "keywords": [],
