@@ -30,10 +30,9 @@ RUN npm install -g pnpm
 # Copy the build files 
 COPY --from=builder /usr/src/app/dist ./dist
 
-# Copy the necessary package files for production and the .env file
+# Copy the necessary package files 
 COPY --from=builder /usr/src/app/package.json ./
 COPY --from=builder /usr/src/app/pnpm-lock.yaml* ./
-COPY --from=builder /usr/src/app/.env ./
 
 # Install production dependencies
 RUN pnpm install --prod --frozen-lockfile --ignore-scripts

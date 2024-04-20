@@ -34,6 +34,9 @@ jobs:
           file: Dockerfile
           push: true
           tags: danuja01/ctse-assignment:latest
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PORT: ${{ secrets.PORT }}
 
       - name: Run tests
         run: |
