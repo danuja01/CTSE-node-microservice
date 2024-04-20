@@ -27,6 +27,9 @@ WORKDIR /usr/src/app
 # Install pnpm in the production image
 RUN npm install -g pnpm
 
+# Install necessary dev dependencies for running tests
+RUN npm install -g mocha chai sinon supertest
+
 # Copy the build files 
 COPY --from=builder /usr/src/app/dist ./dist
 
