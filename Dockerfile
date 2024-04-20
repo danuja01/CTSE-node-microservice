@@ -1,28 +1,51 @@
 FROM node:20 AS builder
 
+# Set the working directory 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+# Install pnpm
+RUN npm install -g pnpm
 
-RUN npm install
+# Copy package.json and pnpm-lock.yaml
+COPY package.json pnpm-lock.yaml* ./
 
+# Install dependencies using 
+RUN pnpm install --frozen-lockfile
+
+# Copy the application source code 
 COPY . .
 
+# Build the application
 RUN npm run build
 
 # Use a lightweight Node.js image for production
 FROM node:20-slim
 
+# Set the working directory 
 WORKDIR /usr/src/app
 
-# Copy only the build files from the builder stage
+# Install pnpm in the production image
+RUN npm install -g pnpm
+
+# Copy the build files 
 COPY --from=builder /usr/src/app/dist ./dist
 
-# Copy only the necessary package files for production
-COPY --from=builder /usr/src/app/package*.json ./
+# Copy the necessary package files for production and the .env file
+COPY --from=builder /usr/src/app/package.json ./
+COPY --from=builder /usr/src/app/pnpm-lock.yaml* ./
+COPY --from=builder /usr/src/app/.env ./
 
-RUN npm install --omit=dev --ignore-scripts 
+# Install production dependencies
+RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
+# Expose port 4000
 EXPOSE 4000
+
+# Install curl
+RUN apt-get update && apt-get install -y curl
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:4000/health || exit 1
 
 CMD ["node", "dist/app.js"]
