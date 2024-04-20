@@ -9,12 +9,12 @@ import { makeResponse } from '@/utils';
 
 export const getAll = async (req, res) => {
   const feedbacks = await getAllFeedbackService(req.query);
-  return makeResponse({ res, data: feedbacks, message: 'Feedbacks retrieved succesfully' });
+  return makeResponse({ res, data: feedbacks, message: 'Feedbacks retrieved successfully' });
 };
 
 export const getById = async (req, res) => {
   const feedback = await getFeedbackByIdService(req.params.id);
-  return makeResponse({ res, data: feedback, message: 'Feedback retrieved succesfully' });
+  return makeResponse({ res, data: feedback, message: 'Feedback retrieved successfully' });
 };
 
 export const createFeedback = async (req, res) => {

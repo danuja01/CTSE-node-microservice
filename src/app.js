@@ -3,10 +3,10 @@ import rateLimit from 'express-rate-limit';
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
-import { default as routes } from '@/routes/index.routes';
 import connectDB from './database';
 import { errorHandler } from './middleware/errors';
 import logger from './utils/logger';
+import { default as routes } from '@/routes/index.routes';
 
 require('dotenv').config();
 

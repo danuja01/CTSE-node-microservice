@@ -2,6 +2,7 @@ import { isCelebrateError } from 'celebrate';
 import { makeResponse } from '@/utils';
 import logger from '@/utils/logger';
 
+// eslint-disable-next-line no-unused-vars
 export const errorHandler = (err, req, res, _) => {
   if (!res.errorLogged) {
     logger.error(`Error: ${err.message} | Request Path - ${req.path} | Stack: ${err.stack}`, {

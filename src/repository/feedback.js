@@ -11,7 +11,7 @@ export const createFeedback = async (feedbackData) => {
   }
 };
 
-export const getAllFeedbacks = async ({ sort = {}, filter = {}, page = 1, limit = 10 }) => {
+export const getAllFeedbacks = ({ sort = {}, filter = {}, page = 1, limit = 10 }) => {
   const options = {
     page,
     limit

@@ -1,18 +1,15 @@
 {
+  "extends": ["@sliit-foss/eslint-config-internal"],
+  // "parser": "babel-eslint",
   "env": {
     "browser": false,
     "node": true,
-    "jest": true,
+    "mocha": true,
     "es6": true
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018
   },
   "rules": {
     "no-sparse-arrays": "off",
     "no-nested-ternary": "off",
-    "newline-per-chained-call": "off",
-    "import/order": "off"
+    "newline-per-chained-call": "off"
   }
 }
