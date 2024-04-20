@@ -4,7 +4,7 @@ import {
     getFeedbackById,
     findOneAndUpdateFeedback,
     findOneAndRemoveFeedback
-} from '@repository/feedBack';
+} from '@/repository/feedback';
 
 export const createFeedbackService = async (feedbackId) => {
     const newFeedback = await createFeedback(feedbackId);
@@ -29,10 +29,6 @@ export const UpdateFeedbackService = async (filters, data) => {
 export const deleteFeedbackService = async (feedbackId, userId) => {
     const feedback = await getFeedbackById({ _id: feedbackId });
     if (!feedback) throw new createError(404, 'Invalid feedback ID');
-  
-    if (feedback.userId.toString() !== userId.toString()) {
-      throw new createError(403, 'You are not authorized to delete this feedback');
-    }
   
     return findOneAndRemoveFeedback({ _id: feedbackId });
 };

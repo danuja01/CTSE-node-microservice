@@ -1,6 +1,7 @@
 import express from 'express';
 import { tracedAsyncHandler } from '@sliit-foss/functions';
 import { Segments, celebrate } from 'celebrate';
+import { feedbackIdSchema, addFeedbackSchema, feedbackUpdateSchema } from '@/validations/feedback';
 import { createFeedback, getAll, getById, updateFeedback, removeFeedback } from '@/controllers/feedback';
 
 const feedbackRouter = express.Router();

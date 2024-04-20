@@ -28,6 +28,6 @@ export const updateFeedback = async (req, res) => {
 };
   
 export const removeFeedback = async (req, res) => {
-    await deleteFeedbackService(req.params.id, req.user._id);
+    await deleteFeedbackService(req.params.id);
     return makeResponse({ res, message: 'Feedback deleted successfully' });
 };
