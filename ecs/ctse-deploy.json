@@ -21,7 +21,7 @@
       "secrets": [
         {
           "name": "MONGO_URI",
-          "valueFrom": "arn:aws:secretsmanager:eu-north-1:533267443508:secret:deployment/ctse-sQ7Lvo"
+          "valueFrom": "arn:aws:secretsmanager:eu-north-1:533267443508:secret:deployment/ctse-sQ7Lvo:MONGO_URI::"
         }
       ],
       "logConfiguration": {
