@@ -30,7 +30,9 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: danuja01/ctse-assignment:latest
+          tags: |
+            danuja01/ctse-assignment:latest
+            danuja01/ctse-assignment:${{ github.sha }}
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           PORT: ${{ secrets.PORT }}
