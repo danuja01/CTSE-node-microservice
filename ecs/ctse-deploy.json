@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:533267443508:task-definition/ctse-deploy:1",
+  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:533267443508:task-definition/ctse-deploy:9",
   "containerDefinitions": [
     {
       "name": "ctse-deploy",
-      "image": "533267443508.dkr.ecr.eu-north-1.amazonaws.com/ctse-deploy:latest",
+      "image": "danuja01/ctse-assignment:latest",
       "cpu": 0,
       "portMappings": [
         {
@@ -15,11 +15,18 @@
         }
       ],
       "essential": true,
-      "environment": [],
-      "environmentFiles": [],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-north-1:533267443508:secret:prod/ctse-Rt6z73:SecretString:PORT}}"
+        },
+        {
+          "name": "MONGO_URI",
+          "value": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-north-1:533267443508:secret:prod/ctse-Rt6z73:SecretString:MONGO_URI}}"
+        }
+      ],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -37,7 +44,7 @@
   "taskRoleArn": "arn:aws:iam::533267443508:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::533267443508:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 9,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -48,16 +55,10 @@
       "name": "ecs.capability.execution-role-awslogs"
     },
     {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
     },
     {
       "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -78,7 +79,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-04-21T11:27:55.919Z",
+  "registeredAt": "2024-04-21T14:37:17.555Z",
   "registeredBy": "arn:aws:iam::533267443508:root",
   "tags": []
 }
