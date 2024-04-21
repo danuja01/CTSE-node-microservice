@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: eu-north-1
-  ECR_REPOSITORY: CTSE-ASSIGNMENT
+  ECR_REPOSITORY: ctse-assignment
   ECS_SERVICE: ctse-test
   ECS_CLUSTER: ctseCluster
   ECS_TASK_DEFINITION:
