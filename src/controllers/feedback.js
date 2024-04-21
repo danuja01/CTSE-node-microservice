@@ -32,4 +32,3 @@ export const removeFeedback = async (req, res) => {
   return makeResponse({ res, message: 'Feedback deleted successfully' });
 };
 
-//console
