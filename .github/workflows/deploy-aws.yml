@@ -1,8 +1,10 @@
 name: Deploy to Amazon ECS
 
 on:
-  push:
-    branches: ['main']
+  workflow_run:
+    workflows: ['Docker Build and Test Pipeline']
+    types:
+      - completed
 
 env:
   AWS_REGION: eu-north-1
