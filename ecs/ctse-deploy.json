@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:533267443508:task-definition/ctse-deploy:1",
+  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:533267443508:task-definition/ctse-deploy:13",
   "containerDefinitions": [
     {
       "name": "ctse-deploy",
-      "image": "533267443508.dkr.ecr.eu-north-1.amazonaws.com/ctse-deploy:latest",
+      "image": "533267443508.dkr.ecr.eu-north-1.amazonaws.com/ctse-deploy:e2ed08dfc701184253c20a2012365e31c5bc12fd",
       "cpu": 0,
       "portMappings": [
         {
@@ -16,10 +16,14 @@
       ],
       "essential": true,
       "environment": [],
-      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
+      "secrets": [
+        {
+          "name": "MONGO_URI",
+          "valueFrom": "arn:aws:secretsmanager:eu-north-1:533267443508:secret:deployment/ctse-sQ7Lvo:MONGO_URI::"
+        }
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -37,7 +41,7 @@
   "taskRoleArn": "arn:aws:iam::533267443508:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::533267443508:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 13,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -52,6 +56,9 @@
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.secrets.asm.environment-variables"
     },
     {
       "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -78,7 +85,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-04-21T11:27:55.919Z",
+  "registeredAt": "2024-04-21T16:26:10.190Z",
   "registeredBy": "arn:aws:iam::533267443508:root",
   "tags": []
 }
